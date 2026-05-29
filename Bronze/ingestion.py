@@ -9,13 +9,17 @@
 # Added the data as tables in the UC-enabled cluster (Serverless Compute)
 
 # Reading the data as tables
-orders_df = spark.read.table("workspace.default.orders")
+
+CATALOG = "workspace"
+SCHEMA = "default"
+
+orders_df = spark.read.table(f"{CATALOG}.{SCHEMA}.orders")
 # display(orders_df)
 
-customers_df = spark.read.table("workspace.default.customer")
+customers_df = spark.read.table(f"{CATALOG}.{SCHEMA}.customer")
 # display(customers_df)
 
-products_df = spark.read.table("workspace.default.products")
+products_df = spark.read.table(f"{CATALOG}.{SCHEMA}.products")
 # display(products_df)
 
 
@@ -41,6 +45,3 @@ orders_df = spark.read.option("multiline", "true").json("/Volumes/workspace/defa
 # Reading the raw data as files
 # customers_df = spark.read.format("com.crealytics.spark.excel").option("header", "true").option("inferSchema", "true").load("/Volumes/workspace/default/rawfiles/Customers.xlsx")
 # display(customers_df)
-
-# COMMAND ----------
-
