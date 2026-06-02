@@ -74,12 +74,7 @@ def test_customers_file_exists():
 )
 def test_source_tables_exist(table_name):
 
-    tables = [
-        row.tableName
-        for row in spark.sql(
-            "SHOW TABLES IN workspace.default"
-        ).collect()
-    ]
+    tables = [table.name for table in spark.catalog.listTables("workspace.default")]
 
     assert table_name in tables
 
